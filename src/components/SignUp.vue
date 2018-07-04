@@ -4,7 +4,7 @@
     <input type="email" name="email" placeholder="E-mail">
     <input type="password" name="password" placeholder="Password">
     <button type="button" name="sign-up">Sign Up</button>
-    <span>Go Login</span>
+    <p>Go back to <router-link :to="{ path: '/login' }">Sign In</router-link></p>
   </div>
 </template>
 

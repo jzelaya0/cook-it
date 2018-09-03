@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 module.exports = merge(prodEnv, {
+  HOST: JSON.stringify(process.env.HOST),
   NODE_ENV: '"development"',
   FIREBASE_APIKEY: JSON.stringify(process.env.FIREBASE_APIKEY),
   FIREBASE_AUTHDOMAIN: JSON.stringify(process.env.FIREBASE_AUTHDOMAIN),

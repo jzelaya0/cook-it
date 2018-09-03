@@ -1,31 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import firebase from 'firebase'
 
+// Components
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import Dashboard from '@/components/Dashboard'
+import Settings from '@/components/Settings'
 
-import firebase from 'firebase'
 
 Vue.use(Router)
 
 let router =  new Router({
+  mode: 'history',
   routes: [
     {
       path: '*',
       redirect: '/login'
     },
     {
-      path: '/',
+      path: '*',
       redirect: '/login'
-    },
-    {
-      path: '/hello-world',
-      name: 'HelloWorld',
-      component: HelloWorld,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: '/login',
@@ -36,7 +31,23 @@ let router =  new Router({
       path: '/sign-up',
       name: 'SignUp',
       component: SignUp
-    }
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
@@ -47,7 +58,7 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !currentUser) {
     next('login');
   } else if (!requiresAuth && currentUser) {
-    next('hello-world');
+    next('dashboard');
   } else {
     next();
   }

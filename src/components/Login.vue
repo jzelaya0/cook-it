@@ -23,7 +23,7 @@ export default {
     login() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace('hello-world')
+          this.$router.replace('dashboard')
         },
 
         (err) => {

@@ -1,5 +1,10 @@
 <template lang="html">
   <div class="sign-up">
+    <transition name="fade">
+      <div v-if="performingRequest" class="loading">
+        <p>Loading...</p>
+      </div>
+    </transition>
     <h1>Sign Up</h1>
     <input v-model="name" type="text" name="name" placeholder="Name">
     <input v-model="email" type="email" name="email" placeholder="E-mail">
@@ -18,11 +23,14 @@ export default {
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      performingRequest: false,
     }
   },
   methods: {
     signUp() {
+      this.performingRequest = true;
+
       firebase.auth.createUserWithEmailAndPassword(this.email, this.password).then(
         (user) => {
           this.$store.commit('setCurrentUser', user.user)
@@ -39,6 +47,7 @@ export default {
         },
         (err) => {
           alert(`Opps.. ${err.message}`)
+          this.performingRequest = false;
         }
       )
     }

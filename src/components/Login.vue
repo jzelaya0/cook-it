@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+const firebase = require('../firebaseConfig.js')
 
 export default {
   name: 'login',
@@ -21,9 +21,12 @@ export default {
   },
   methods: {
     login() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+      firebase.auth.signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace('dashboard')
+          console.log(user.user);
+          this.$store.commit('setCurrentUser', user.user)
+          this.$store.dispatch('fetchUserProfile')
+          this.$router.push('/dashboard')
         },
 
         (err) => {

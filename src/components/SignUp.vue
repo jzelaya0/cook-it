@@ -1,10 +1,8 @@
 <template lang="html">
   <div class="sign-up">
-    <transition name="fade">
-      <div v-if="performingRequest" class="loading">
-        <p>Loading...</p>
-      </div>
-    </transition>
+    <div v-if="performingRequest" class="loading-wrapper">
+      <loading-state></loading-state>
+    </div>
     <h1>Sign Up</h1>
     <input v-model="name" type="text" name="name" placeholder="Name">
     <input v-model="email" type="email" name="email" placeholder="E-mail">
@@ -15,9 +13,13 @@
 </template>
 
 <script>
+import LoadingState from '@/components/LoadingState'
 const firebase = require('../firebaseConfig.js')
 
 export default {
+  components: {
+    LoadingState
+  },
   name: 'signUp',
   data() {
     return {

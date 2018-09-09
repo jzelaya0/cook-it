@@ -1,5 +1,8 @@
 <template lang="html">
   <div class="login">
+    <div v-if="errorMessage !== ''"  class="error-message">
+      <alert v-bind:message="errorMessage"></alert>
+    </div>
     <div v-if="performingRequest" class="loading-wrapper">
       <loading-state></loading-state>
     </div>
@@ -13,11 +16,14 @@
 
 <script>
 import LoadingState from '@/components/LoadingState'
+import Alert from '@/components/Alert'
+
 const firebase = require('../firebaseConfig.js')
 
 export default {
   components: {
-    LoadingState
+    LoadingState,
+    Alert
   },
   name: 'login',
   data() {
@@ -25,11 +31,13 @@ export default {
       email: '',
       password: '',
       performingRequest: false,
+      errorMessage: ''
     }
   },
   methods: {
     login() {
-      this.performingRequest = true;
+      this.performingRequest = true
+      this.errorMessage = ''
 
       firebase.auth.signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
@@ -40,8 +48,8 @@ export default {
         },
 
         (err) => {
-          alert(`Opps ${err.message}`)
-          this.performingRequest = false;
+          this.performingRequest = false
+          this.errorMessage = err.message
         }
       )
     }

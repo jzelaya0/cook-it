@@ -1,5 +1,8 @@
 <template lang="html">
   <div class="sign-up">
+    <div v-if="errorMessage !== ''"  class="error-message">
+      <alert v-bind:message="errorMessage"></alert>
+    </div>
     <div v-if="performingRequest" class="loading-wrapper">
       <loading-state></loading-state>
     </div>
@@ -14,11 +17,13 @@
 
 <script>
 import LoadingState from '@/components/LoadingState'
+import Alert from '@/components/Alert'
 const firebase = require('../firebaseConfig.js')
 
 export default {
   components: {
-    LoadingState
+    LoadingState,
+    Alert
   },
   name: 'signUp',
   data() {
@@ -27,11 +32,13 @@ export default {
       email: '',
       password: '',
       performingRequest: false,
+      errorMessage: ''
     }
   },
   methods: {
     signUp() {
-      this.performingRequest = true;
+      this.performingRequest = true
+      this.errorMessage = ''
 
       firebase.auth.createUserWithEmailAndPassword(this.email, this.password).then(
         (user) => {
@@ -48,8 +55,8 @@ export default {
           })
         },
         (err) => {
-          alert(`Opps.. ${err.message}`)
-          this.performingRequest = false;
+          this.performingRequest = false
+          this.errorMessage = err.message
         }
       )
     }

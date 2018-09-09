@@ -11,6 +11,19 @@
     <input v-model="password" type="password" name="password" placeholder="Password">
     <button type="button" name="button" v-on:click="login">Log In</button>
     <p>Don't have an account? You can create one <router-link :to="{ path: 'sign-up'}">here</router-link></p>
+    <button v-on:click="togglePasswordResetForm" type="button" name="button">Forgot your password?</button>
+    <form v-if="showPasswordResetForm" @submit.prevent class="password-reset">
+      <div v-if="!passwordResetSuccess">
+        <h2>Reset Your Password</h2>
+        <label for="email-reset">Email</label>
+        <input v-model.trim="passwordFormEmail" type="email" name="email-reset" placeholder="E-mail Address">
+        <button v-on:click="submitPasswordResetForm" type="button" name="reset-password">Reset</button>
+      </div>
+      <div v-else>
+        <alert message="Success! Check your email for a password reset link."></alert>
+        <button v-on:click="togglePasswordResetForm" type="button" name="button">Okay!</button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -31,7 +44,10 @@ export default {
       email: '',
       password: '',
       performingRequest: false,
-      errorMessage: ''
+      errorMessage: '',
+      showPasswordResetForm: false,
+      passwordResetSuccess: false,
+      passwordFormEmail: ''
     }
   },
   methods: {
@@ -50,6 +66,32 @@ export default {
         (err) => {
           this.performingRequest = false
           this.errorMessage = err.message
+        }
+      )
+    },
+    togglePasswordResetForm() {
+      if (this.showPasswordResetForm) {
+        this.showPasswordResetForm = false
+        this.passwordResetSuccess = false
+      } else {
+        this.showPasswordResetForm = true
+      }
+    },
+    submitPasswordResetForm() {
+      this.performingRequest = true
+
+      firebase.auth.sendPasswordResetEmail(this.passwordFormEmail).then(
+        () => {
+          this.performingRequest = false
+          this.passwordResetSuccess = true
+          this.passwordFormEmail = ''
+        },
+
+        (err) => {
+          console.log(err);
+          this.performingRequest = false
+          this.errorMessage = err.message
+          this.passwordFormEmail = ''
         }
       )
     }

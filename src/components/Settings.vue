@@ -6,8 +6,10 @@
 <script>
 export default {
   name: 'Settings',
-  data: {
-    msg: "Welcome to your settings!"
+  data() {
+    return {
+      msg: "Welcome to your settings!"
+    }
   }
 }
 </script>

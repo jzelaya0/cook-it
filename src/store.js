@@ -18,6 +18,10 @@ export const store = new Vuex.Store({
         console.log(err)
       })
     },
+    clearData({ commit}) {
+      commit('setCurrentUser', null)
+      commit('setUserProfile', {})
+    }
   },
   mutations: {
     setCurrentUser(state, val) {

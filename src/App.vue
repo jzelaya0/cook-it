@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <Navigation v-if="currentUser"></Navigation>
     <img src="./assets/logo.png">
     <router-view/>

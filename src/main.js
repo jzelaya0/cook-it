@@ -4,9 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { store } from './store.js'
+import BootstrapVue from 'bootstrap-vue'
 
 const firebase = require('./firebaseConfig.js')
 
+import './assets/scss/main.scss';
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false
 

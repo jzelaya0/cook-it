@@ -5,6 +5,14 @@ Vue.use(Vuex)
 
 const firebase = require('./firebaseConfig.js')
 
+// handle state on page reload
+firebase.auth.onAuthStateChanged(user => {
+  if (user) {    
+    store.commit('setCurrentUser', user)
+    store.dispatch('fetchUserProfile')
+  }
+})
+
 export const store = new Vuex.Store({
   state: {
     currentUser: null,

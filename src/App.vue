@@ -1,7 +1,6 @@
 <template>
-  <div id="app" class="container">
-    <Navigation v-if="currentUser"></Navigation>
-    <img src="./assets/logo.png">
+  <div id="app">
+    <Navigation></Navigation>
     <router-view/>
   </div>
 </template>
@@ -20,12 +19,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

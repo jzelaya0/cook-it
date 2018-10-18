@@ -1,17 +1,43 @@
 <template lang="html">
-  <div class="sign-up">
-    <div v-if="errorMessage !== ''"  class="error-message">
-      <alert v-bind:message="errorMessage"></alert>
+  <div id="sign-up" class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-12 col-md-8">
+        <!-- States and Alerts -->
+        <div v-if="errorMessage !== ''"  class="error-message">
+          <alert v-bind:message="errorMessage"></alert>
+        </div>
+        <div v-if="performingRequest" class="loading-wrapper">
+          <loading-state></loading-state>
+        </div>
+
+        <header class="text-center">
+          <h1>Sign Up</h1>
+        </header>
+
+        <form class="form mb-3">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" v-model="name" type="text" name="name" placeholder="Name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" v-model="email" type="email" name="email" placeholder="E-mail">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" v-model="password" type="password" name="password" placeholder="Password">
+          </div>
+
+          <button class="btn btn-primary" v-on:click="signUp" type="button" name="sign-up">Sign Up</button>
+        </form>
+
+        <div class="text-center">
+          <p>Go back to <router-link :to="{ path: '/login' }">Sign In</router-link></p>
+        </div>
+      </div>
     </div>
-    <div v-if="performingRequest" class="loading-wrapper">
-      <loading-state></loading-state>
-    </div>
-    <h1>Sign Up</h1>
-    <input v-model="name" type="text" name="name" placeholder="Name">
-    <input v-model="email" type="email" name="email" placeholder="E-mail">
-    <input v-model="password" type="password" name="password" placeholder="Password">
-    <button v-on:click="signUp" type="button" name="sign-up">Sign Up</button>
-    <p>Go back to <router-link :to="{ path: '/login' }">Sign In</router-link></p>
   </div>
 </template>
 

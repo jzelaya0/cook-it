@@ -25,6 +25,7 @@ db.settings(settings)
 
 // firebase collections
 const usersCollection = db.collection('users')
+const recipesCollection = db.collection('recipes')
 
 
 export {
@@ -32,4 +33,5 @@ export {
   auth,
   currentUser,
   usersCollection,
+  recipesCollection
 }

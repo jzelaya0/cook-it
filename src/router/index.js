@@ -7,6 +7,7 @@ import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Dashboard from '@/components/Dashboard'
 import Settings from '@/components/Settings'
+import Recipe from '@/components/Recipe'
 
 
 Vue.use(Router)
@@ -48,6 +49,14 @@ let router =  new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/recipe/:id',
+      name: 'Recipe',
+      component: Recipe,
+      meta: {
+        requiresAuth: true
+      }
+    }
   ]
 })
 

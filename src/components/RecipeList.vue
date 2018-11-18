@@ -4,9 +4,10 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{ recipe.name }}</h5>
-          <p v-if="recipe.description" class="card-text">{{ recipe.description}}</p>
-          <button type="button" name="edit" class="btn btn-info">Edit</button>
-          <button type="button" name="edit" class="btn btn-danger">Delete</button>
+          <p v-if="recipe.description" class="card-text">{{ recipe.description}}</p>          
+          <router-link :to="{ name: 'Recipe', params: { id: recipe.id }}">
+            <button type="button" name="edit" class="btn btn-primary" >View</button>
+          </router-link>
         </div>
       </div>
     </div>

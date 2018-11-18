@@ -36,6 +36,7 @@ export const store = new Vuex.Store({
         // Grab recipe by id and return it's data
         docs.forEach(doc => {
           let recipe = (doc.id, " => ", doc.data());
+          recipe.id = doc.id
           recipes.push(recipe)
         })
 

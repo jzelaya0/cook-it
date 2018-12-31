@@ -11,6 +11,10 @@ firebase.auth.onAuthStateChanged(user => {
     store.commit('setCurrentUser', user)
     store.dispatch('fetchUserProfile')
     store.dispatch('fetchUserRecipes')
+
+    firebase.usersCollection.doc(user.uid).onSnapshot(doc => {
+      store.commit('setUserProfile', doc.data())
+    })
   }
 })
 
@@ -44,6 +48,18 @@ export const store = new Vuex.Store({
       })
       .catch(err => {
         console.log(err)
+      })
+    },
+
+    updateUserProfile({commit, state}, data) {
+      let name = data.name
+      let username = data.username
+
+      firebase.usersCollection.doc(state.currentUser.uid).update({ name, username }).then(user => {
+        console.log('User updated');        
+      })
+      .catch(err => {
+        console.log(err);
       })
     },
 

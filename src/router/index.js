@@ -3,8 +3,8 @@ import Router from 'vue-router'
 import firebase from 'firebase'
 
 // Components
-import Login from '@/components/Login'
-import SignUp from '@/components/SignUp'
+import LoginPage from "@/views/LoginPage.vue"
+import SignUpPage from '@/views/SignUpPage.vue'
 import Dashboard from '@/components/Dashboard'
 import Settings from '@/components/Settings'
 import Recipe from '@/components/Recipe'
@@ -26,12 +26,12 @@ let router =  new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: LoginPage
     },
     {
       path: '/sign-up',
       name: 'SignUp',
-      component: SignUp
+      component: SignUpPage
     },
     {
       path: '/dashboard',

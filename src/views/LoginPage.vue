@@ -54,8 +54,7 @@
 <script>
 import LoadingState from '@/components/LoadingState'
 import Alert from '@/components/Alert'
-
-const firebase = require('../firebaseConfig.js')
+import * as firebase from '@/firebaseConfig.js'
 
 export default {
   components: {

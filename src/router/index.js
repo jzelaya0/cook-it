@@ -7,7 +7,7 @@ import LoginPage from "@/views/LoginPage.vue"
 import SignUpPage from '@/views/SignUpPage.vue'
 import Dashboard from '@/views/DashboardPage.vue'
 import Settings from '@/views/SettingsPage.vue'
-import Recipe from '@/components/Recipe'
+import Recipe from '@/views/RecipePage.vue'
 
 
 Vue.use(Router)

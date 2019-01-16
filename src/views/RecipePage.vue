@@ -38,7 +38,7 @@
 </template>
 
 <script>
-const firebase = require('../firebaseConfig.js')
+import * as firebase from '@/firebaseConfig.js'
 
 export default {
   name: "Recipe",

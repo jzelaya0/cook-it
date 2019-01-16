@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <div class="row">
       <div class="col-12">
         <div class="jumbotron jumbotron-fluid">
@@ -21,10 +20,10 @@
 </template>
 
 <script>
-import RecipeList from './RecipeList'
-import RecipeCreate from './RecipeCreate'
+import RecipeList from '@/components/RecipeList'
+import RecipeCreate from '@/components/RecipeCreate'
 import { mapState } from 'vuex'
-const firebase = require('../firebaseConfig.js')
+import * as firebase from '@/firebaseConfig.js'
 
 export default {
   name: 'Dashboard',

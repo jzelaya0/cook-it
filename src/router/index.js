@@ -6,7 +6,7 @@ import firebase from 'firebase'
 import LoginPage from "@/views/LoginPage.vue"
 import SignUpPage from '@/views/SignUpPage.vue'
 import Dashboard from '@/views/DashboardPage.vue'
-import Settings from '@/components/Settings'
+import Settings from '@/views/SettingsPage.vue'
 import Recipe from '@/components/Recipe'
 
 

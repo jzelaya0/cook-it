@@ -6,7 +6,7 @@ import router from './router'
 import { store } from './store.js'
 import BootstrapVue from 'bootstrap-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlus, faMinus, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus, faSpinner, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 // Firebase
@@ -18,7 +18,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue);
 
 // FontAwesomeIcons
-library.add(faPlus, faMinus, faSpinner)
+library.add(faPlus, faMinus, faSpinner, faEdit)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

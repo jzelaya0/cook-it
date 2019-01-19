@@ -8,8 +8,8 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-6">
-        <RecipeCreate></RecipeCreate>
+      <div class="col-12">
+        <RecipeForm></RecipeForm>
       </div>
 
       <div class="col-sm-12 col-md-6">
@@ -21,13 +21,13 @@
 
 <script>
 import RecipeList from '@/components/RecipeList'
-import RecipeCreate from '@/components/RecipeCreate'
+import RecipeForm from '@/components/RecipeForm'
 import { mapState } from 'vuex'
 import * as firebase from '@/firebaseConfig.js'
 
 export default {
   name: 'Dashboard',
-  components: { RecipeList, RecipeCreate },
+  components: { RecipeList, RecipeForm },
   computed: {
     ...mapState(['userProfile', 'userRecipes'])
   },

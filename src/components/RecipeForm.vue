@@ -23,11 +23,10 @@
       <div class="form-group">
         <input type="text" readonly class="form-control-plaintext" value="Add an ingredient">
       </div>
-
       <!-- Add ingredient -->
-      <RecipeCreateIngredientInputs @addIngredient="onAddIngredient"></RecipeCreateIngredientInputs>
-      <!-- Render list of removable ingredients -->
-      <RecipeCreateIngredientInputs v-for="(ingredient, index) in form.ingredients" @deleteIngredient="onDeleteIngredient(index)" :key="index" v-bind:ingredient="ingredient"></RecipeCreateIngredientInputs>
+      <RecipeFormAddIngredient @onAddIngredient="addIngredient"></RecipeFormAddIngredient>
+      <!-- Delete an ingredient -->
+      <RecipeFormDeleteIngredient v-for="(ingredient, index) in form.ingredients" @onDeleteIngredient="deleteIngredient(index)" :key="index" :index="index" v-bind:ingredient="ingredient"></RecipeFormDeleteIngredient>
 
       <button v-on:click="submitRecipe" type="submit" name="Submit" class="btn btn-primary">Submit</button>
     </form>
@@ -36,15 +35,17 @@
 </template>
 
 <script>
-import RecipeCreateIngredientInputs from './RecipeCreateIngredientInputs'
+import RecipeFormAddIngredient from '@/components/RecipeFormAddIngredient'
+import RecipeFormDeleteIngredient from '@/components/RecipeFormDeleteIngredient'
 import { mapState } from 'vuex'
 
 const firebase = require('../firebaseConfig.js')
 
 export default {
-  name: 'RecipeCreate',
+  name: 'RecipeForm',
   components: {
-    RecipeCreateIngredientInputs
+    RecipeFormAddIngredient,
+    RecipeFormDeleteIngredient
   },
   data() {
     return {
@@ -83,12 +84,12 @@ export default {
       })
     },
 
-    onDeleteIngredient(index) {
-      this.form.ingredients.splice(index, 1)
+    addIngredient(evt) {
+      this.form.ingredients.push(evt)
     },
 
-    onAddIngredient(evt) {
-      this.form.ingredients.push(evt)
+    deleteIngredient(index) {
+      this.form.ingredients.splice(index, 1)
     }
   }
 }

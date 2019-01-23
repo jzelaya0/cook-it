@@ -26,7 +26,7 @@
       <!-- Add ingredient -->
       <RecipeFormAddIngredient @onAddIngredient="addIngredient"></RecipeFormAddIngredient>
       <!-- Delete an ingredient -->
-      <RecipeFormDeleteIngredient v-for="(ingredient, index) in form.ingredients" @onDeleteIngredient="deleteIngredient(index)" :key="index" :index="index" v-bind:ingredient="ingredient"></RecipeFormDeleteIngredient>
+      <RecipeFormUpdateIngredient v-for="(ingredient, index) in form.ingredients" @onDeleteIngredient="deleteIngredient(index)" :key="index" :index="index" v-bind:ingredient="ingredient"></RecipeFormUpdateIngredient>
 
       <button v-on:click="submitRecipe" type="submit" name="Submit" class="btn btn-primary">Submit</button>
     </form>
@@ -36,7 +36,7 @@
 
 <script>
 import RecipeFormAddIngredient from '@/components/RecipeFormAddIngredient'
-import RecipeFormDeleteIngredient from '@/components/RecipeFormDeleteIngredient'
+import RecipeFormUpdateIngredient from '@/components/RecipeFormUpdateIngredient'
 import { mapState } from 'vuex'
 
 const firebase = require('../firebaseConfig.js')
@@ -45,7 +45,7 @@ export default {
   name: 'RecipeForm',
   components: {
     RecipeFormAddIngredient,
-    RecipeFormDeleteIngredient
+    RecipeFormUpdateIngredient
   },
   data() {
     return {

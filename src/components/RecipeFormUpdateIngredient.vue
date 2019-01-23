@@ -1,13 +1,13 @@
 <template lang="html">
   <div class="form-row">
     <div class="form-group col-12 col-md-6">
-      <input v-model="food" type="text" name="RecipeIngredient" class="form-control" placeholder="Ingredient">
+      <input v-model="ingredient.food" type="text" name="RecipeIngredient" class="form-control" placeholder="Ingredient">
     </div>
     <div class="form-group col-5 col-md-3">
-      <input v-model="quantity" type="text" name="RecipeIngredientQty" class="form-control" placeholder="Quantity">
+      <input v-model="ingredient.quantity" type="text" name="RecipeIngredientQty" class="form-control" placeholder="Quantity">
     </div>
     <div class="form-group col-5 col-md-2">
-      <select class="form-control" v-model="measurement" name="measurement">
+      <select class="form-control" v-model="ingredient.measurement" name="measurement">
         <optgroup v-for="(group, name) in measurementOptions" :label="name">
           <option v-for="option in group" :value="option.value">
             {{ option.text }}
@@ -16,8 +16,8 @@
       </select>
     </div>
     <div class="form-group col-2 col-md-1">
-      <button v-on:click="onAddIngredient" type="button" name="button" class="btn btn-outline-primary btn-block">
-        <font-awesome-icon icon="plus" />
+      <button v-on:click="onDeleteIngredient" type="button" name="button" class="btn btn-outline-danger btn-block">
+        <font-awesome-icon icon="minus" />
       </button>
     </div>
   </div>
@@ -25,12 +25,10 @@
 
 <script>
 export default {
-  name: 'RecipeFormAddIngredient',
+  name: 'RecipeFormUpdateIngredient',
+  props: ['ingredient', 'index'],
   data() {
     return {
-      food: '',
-      quantity: '',
-      measurement: 'tsp',
       measurementOptions: {
         volume: [
           { text: 'tsp', value: 'tsp' },
@@ -49,15 +47,8 @@ export default {
     }
   },
   methods: {
-    onAddIngredient() {
-      this.$emit('onAddIngredient', {
-        food: this.food,
-        quantity: this.quantity,
-        measurement: this.measurement
-      })
-      this.food = '';
-      this.quantity = '';
-      this.measurement = this.measurementOptions['volume'][0].value;
+    onDeleteIngredient() {
+      this.$emit('onDeleteIngredient')
     }
   }
 }
